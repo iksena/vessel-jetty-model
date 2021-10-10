@@ -1,7 +1,13 @@
-import Preview from '../components/preview';
+import { Grid, GridItem } from '@chakra-ui/react';
 
-export default function Home() {
-  return (
-    <Preview />
-  )
-}
+import Preview from '../components/preview';
+import VesselForm from '../components/vessel-form';
+
+const Home = () => (
+  <Grid h="100%" templateColumns="repeat(2, 1fr)" gap={1}>
+    <GridItem bg="gray.100" margin={2} padding={10}><VesselForm /></GridItem>
+    <GridItem bg="gray.50" margin={2}><Preview /></GridItem>
+  </Grid>
+);
+
+export default Home;

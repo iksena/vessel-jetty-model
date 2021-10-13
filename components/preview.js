@@ -25,13 +25,12 @@ const Box = (props) => {
         <meshPhongMaterial color="orange" />
       </mesh>
     </group>
-
   );
 };
 
 const Preview = () => (
   <Canvas>
-    <OrbitControls enableZoom />
+    <OrbitControls enableZoom enablePan={false} />
     <directionalLight color="yellow" position={[0, 50, 50]} />
     <Box position={[-119, 0, 35]} />
     <Box position={[-45, 0, 0]} />

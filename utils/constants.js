@@ -13,13 +13,27 @@ export const jettyData = {
     min: 2.5,
     max: 6.75,
   },
+  mda1: {
+    toCenter: {
+      x: 136,
+      y: 28.5,
+    },
+    minHeadlineDegree: 26,
+  },
+  mda2: {
+    toCenter: {
+      x: 119,
+      y: 35,
+    },
+    minSternlineDegree: 15,
+  },
 };
 
 export const vesselFormFields = [
   {
     name: 'vesselLength',
-    label: 'Length of Vessel',
-    placeholder: 'LOA 160-230m',
+    label: 'LOA',
+    placeholder: 'Length of Vessel',
     unit: 'm',
   },
   {
@@ -43,13 +57,13 @@ export const vesselFormFields = [
   {
     name: 'draught',
     label: 'Draught',
-    placeholder: 'Length of Vessel Draught',
+    placeholder: 'Vessel Draught from LWS',
     unit: 'mLWS',
   },
   {
     name: 'dwt',
     label: 'DWT',
-    placeholder: 'Dead Weight Tonnage 25000-60000T',
+    placeholder: 'Dead Weight Tonnage',
     unit: 'T',
   },
   {

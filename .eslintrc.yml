@@ -15,7 +15,7 @@ plugins:
 rules:
   react/jsx-filename-extension: off
   react/jsx-props-no-spreading: off
-  react/destructuring-assignment: warn
-  react/prop-types: warn
+  react/destructuring-assignment: off
+  react/prop-types: off
   react/react-in-jsx-scope: off
   

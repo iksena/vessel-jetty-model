@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   Input,
   InputGroup,
@@ -12,12 +12,6 @@ import {
   Heading,
   Alert,
   AlertIcon,
-  Table,
-  Td,
-  Tr,
-  Th,
-  Thead,
-  Tbody,
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import Image from 'next/image';
@@ -27,10 +21,8 @@ import logo from '../public/pertamina-logo.png';
 import {
   validateVesselForm,
   vesselFormFields,
-  mda1ToBow,
-  mda2ToStern,
-  round,
 } from '../utils';
+import ResultsTable from './results-table';
 
 const TextField = ({
   name, placeholder, label, unit,
@@ -54,57 +46,6 @@ const TextField = ({
   </Field>
 );
 
-const ResultsTable = ({
-  bowToCenter,
-  sternToCenter,
-  vesselBreadth,
-  setAccepted,
-}) => {
-  const {
-    headLine,
-    headLineAngleDeg,
-    isValid: isHeadLineValid,
-  } = mda1ToBow(bowToCenter, vesselBreadth);
-  const {
-    sternLine,
-    sternLineAngleDeg,
-    isValid: isSternLineValid,
-  } = mda2ToStern(sternToCenter, vesselBreadth);
-
-  useEffect(() => {
-    setAccepted(isHeadLineValid && isSternLineValid);
-  }, [isHeadLineValid, isSternLineValid, setAccepted]);
-
-  return (
-    <Table variant="striped" colorScheme="teal">
-      <Thead>
-        <Tr>
-          <Th>Property</Th>
-          <Th>Value</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        <Tr>
-          <Td>Head Line</Td>
-          <Td isNumeric>{`${round(headLine)} m`}</Td>
-        </Tr>
-        <Tr>
-          <Td>Head Line Angle</Td>
-          <Td isNumeric>{`${round(headLineAngleDeg)}º`}</Td>
-        </Tr>
-        <Tr>
-          <Td>Stern Line</Td>
-          <Td isNumeric>{`${round(sternLine)} m`}</Td>
-        </Tr>
-        <Tr>
-          <Td>Stern Line Angle</Td>
-          <Td isNumeric>{`${round(sternLineAngleDeg)}º`}</Td>
-        </Tr>
-      </Tbody>
-    </Table>
-  );
-};
-
 const FormAlert = ({ message, status = 'error' }) => (
   <Alert status={status}>
     <AlertIcon />
@@ -112,15 +53,17 @@ const FormAlert = ({ message, status = 'error' }) => (
   </Alert>
 );
 
-const VesselForm = () => {
+const VesselForm = ({ onSubmit }) => {
   const [isVesselAccepted, setAccepted] = useState();
 
   return (
     <Stack spacing={5} align="start">
       <Image src={logo} alt="logo" />
       <Heading size="lg">Vessel Data</Heading>
-      <Formik initialValues={{}} validate={memoize(validateVesselForm)}>
-        {({ isValid, values }) => (
+      <Formik initialValues={{}} validate={memoize(validateVesselForm)} onSubmit={onSubmit}>
+        {({
+          isValid, values, setErrors, validateField,
+        }) => (
           <Form>
             <Stack spacing={5} align="flex-end">
               <Grid templateColumns="repeat(2, 1fr)" gap={5}>
@@ -129,17 +72,17 @@ const VesselForm = () => {
                 ))}
               </Grid>
               {!isValid && <FormAlert message="All fields are required!" />}
-              <Button
-                colorScheme="teal"
-                type="submit"
-              >
-                Preview
-              </Button>
+              <Button colorScheme="teal" type="submit">Preview</Button>
               <Heading size="md" alignSelf="flex-start">Results</Heading>
-              <ResultsTable {...values} setAccepted={setAccepted} />
+              <ResultsTable
+                {...values}
+                setAccepted={setAccepted}
+                setErrors={setErrors}
+                validateField={validateField}
+              />
               <FormAlert
                 status={isVesselAccepted ? 'success' : 'error'}
-                message={`Vessel is ${isVesselAccepted ? '' : 'not '}accepted!`}
+                message={`Vessel is${isVesselAccepted ? '' : ' not'} accepted!`}
               />
             </Stack>
           </Form>

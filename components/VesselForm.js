@@ -22,7 +22,7 @@ import {
   validateVesselForm,
   vesselFormFields,
 } from '../utils';
-import ResultsTable from './results-table';
+import ResultsTable from './ResultsTable';
 
 const TextField = ({
   name, placeholder, label, unit,

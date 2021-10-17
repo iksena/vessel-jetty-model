@@ -1,3 +1,10 @@
+export const dolphins = {
+  height: 6.5,
+  bollardHeight: 2.55,
+  mda1Position: [-119, 6.5, 35],
+  mda2Position: [136, 6.5, 28.5],
+};
+
 export const jettyData = {
   vesselLength: {
     min: 160,

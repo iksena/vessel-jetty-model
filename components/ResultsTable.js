@@ -22,20 +22,20 @@ const useFieldsValidation = ({
   isHeadLineValid,
   isSternLineValid,
 }) => {
-    const { mda1: { minHeadlineDegree }, mda2: { minSternlineDegree } } = jettyData;
+  const { mda1: { minHeadlineDegree }, mda2: { minSternlineDegree } } = jettyData;
 
-    useEffect(() => {
-        setAccepted(isHeadLineValid && isSternLineValid);
-    }, [isHeadLineValid, isSternLineValid, setAccepted, validateField]);
+  useEffect(() => {
+    setAccepted(isHeadLineValid && isSternLineValid);
+  }, [isHeadLineValid, isSternLineValid, setAccepted, validateField]);
 
-    useEffect(() => {
-        setErrors({
-        ...!isHeadLineValid && { bowToCenter: `Head line angle exceeds minimum of ${minHeadlineDegree}º` },
-        ...!isSternLineValid && { sternToCenter: `Stern line angle exceeds minimum of ${minSternlineDegree}º` }
-        })
-        validateField('bowToCenter');
-        validateField('sternToCenter');
-    }, [isHeadLineValid, isSternLineValid, setErrors, minHeadlineDegree, minSternlineDegree]);
+  useEffect(() => {
+    setErrors({
+      ...!isHeadLineValid && { bowToCenter: `Head line angle exceeds minimum of ${minHeadlineDegree}º` },
+      ...!isSternLineValid && { sternToCenter: `Stern line angle exceeds minimum of ${minSternlineDegree}º` }
+    });
+    validateField('bowToCenter');
+    validateField('sternToCenter');
+  }, [isHeadLineValid, isSternLineValid, setErrors, minHeadlineDegree, minSternlineDegree]);
 };
 
 const ResultsTable = ({

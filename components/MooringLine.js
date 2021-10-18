@@ -5,7 +5,6 @@ const MooringLine = ({
   mooringFrom, mooringPoints, vesselBreadth, zOffset,
 }) => {
   const ref = useRef();
-
   const points = useMemo(() => [
     new THREE.Vector3(mooringFrom, 0, -(vesselBreadth / 2 + 5) + zOffset),
     new THREE.Vector3(...mooringPoints),

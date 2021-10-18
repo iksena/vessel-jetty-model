@@ -20,7 +20,11 @@ export default function Model({ ...props }) {
   return (
     <group ref={group} {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, -Math.PI / 2]} position={[-80, 0, -160]}>
-        <mesh geometry={nodes.mesh_0.geometry} material={materials.initialShadingGroup} onUpdate={onUpdate} />
+        <mesh
+          geometry={nodes.mesh_0.geometry}
+          material={materials.initialShadingGroup}
+          onUpdate={onUpdate}
+        />
       </group>
     </group>
   );

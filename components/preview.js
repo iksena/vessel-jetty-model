@@ -8,6 +8,7 @@ import Vessel from './Vessel';
 import BreastingDolphin from './BreastingDolphin';
 import MooringDolphin from './MooringDolphin';
 import MooringLine from './MooringLine';
+import Platform from './Platform';
 
 const { mda1Position, mda2Position, height } = dolphins;
 
@@ -54,9 +55,13 @@ const MooringLines = (props) => (
 );
 
 const Preview = (props) => (
-  <Canvas camera={{
-    fov: 75, near: 10, far: 2000, position: [0, 0, 100],
-  }}
+  <Canvas
+    camera={{
+      fov: 75,
+      near: 10,
+      far: 2000,
+      position: [0, 0, 100],
+    }}
   >
     <OrbitControls enableZoom enablePan />
     <directionalLight color="yellow" position={[0, 50, 30]} />
@@ -64,12 +69,12 @@ const Preview = (props) => (
     <BreastingDolphin position={[-45, height, 0]} />
     <Vessel {...props} />
     <Suspense fallback={null}>
-      <TransformControls mode="translate">
+      <TransformControls mode="translate" showX showY showZ>
         <Model />
       </TransformControls>
     </Suspense>
-    {/* <WaterPlane /> */}
     <MooringLines />
+    <Platform />
     <Plane args={[500, 500]} rotation={[Math.PI / 2, 0, 0]} color="blue" />
     <BreastingDolphin position={[45, height, 0]} />
     <MooringDolphin position={mda2Position} />

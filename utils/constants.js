@@ -45,7 +45,7 @@ export const vesselFormFields = [
   },
   {
     name: 'vesselBreadth',
-    label: 'Breadth of Vessel',
+    label: 'BOA',
     placeholder: 'Breadth of Vessel',
     unit: 'm',
   },

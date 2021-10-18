@@ -1,8 +1,7 @@
 import { Grid, GridItem } from '@chakra-ui/react';
 import { useState } from 'react';
 
-import Preview from '../components/Preview';
-import VesselForm from '../components/VesselForm';
+import { Preview, VesselForm } from '../components';
 
 const Home = () => {
   const [vesselData, setVesselData] = useState();

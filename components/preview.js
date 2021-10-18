@@ -1,9 +1,10 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, TransformControls, Plane } from '@react-three/drei';
+import {
+  OrbitControls, Plane, Box,
+} from '@react-three/drei';
 
 import { dolphins } from '../utils';
-import Model from './Ship';
 import Vessel from './Vessel';
 import BreastingDolphin from './BreastingDolphin';
 import MooringDolphin from './MooringDolphin';
@@ -17,17 +18,20 @@ const MooringLines = (props) => (
     {!!props.bowToCenter && [
       <MooringLine
         {...props}
+        key={1}
         mooringPoints={mda1Position}
         mooringFrom={-props.bowToCenter}
         zOffset={-1}
       />,
       <MooringLine
         {...props}
+        key={2}
         mooringPoints={mda1Position}
         mooringFrom={-props.bowToCenter}
       />,
       <MooringLine
         {...props}
+        key={3}
         mooringPoints={mda1Position}
         mooringFrom={-props.bowToCenter}
         zOffset={1}
@@ -35,23 +39,32 @@ const MooringLines = (props) => (
     {!!props.sternToCenter && [
       <MooringLine
         {...props}
+        key={4}
         mooringPoints={mda2Position}
         mooringFrom={props.sternToCenter}
         zOffset={-1}
       />,
       <MooringLine
         {...props}
+        key={5}
         mooringPoints={mda2Position}
         mooringFrom={props.sternToCenter}
       />,
       <MooringLine
         {...props}
+        key={6}
         mooringPoints={mda2Position}
         mooringFrom={props.sternToCenter}
         zOffset={1}
       />,
     ]}
   </>
+);
+
+const Catwalk = (props) => (
+  <Box {...props}>
+    <meshPhongMaterial color="brown" />
+  </Box>
 );
 
 const Preview = (props) => (
@@ -68,14 +81,17 @@ const Preview = (props) => (
     <MooringDolphin position={mda1Position} />
     <BreastingDolphin position={[-45, height, 0]} />
     <Vessel {...props} />
-    <Suspense fallback={null}>
+    {/* <Suspense fallback={null}>
       <TransformControls mode="translate" showX showY showZ>
         <Model />
       </TransformControls>
-    </Suspense>
-    <MooringLines />
+    </Suspense> */}
+    <MooringLines {...props} />
+    <Catwalk args={[90, 2, 2]} position={[0, height, 0]} />
     <Platform />
-    <Plane args={[500, 500]} rotation={[Math.PI / 2, 0, 0]} color="blue" />
+    <Plane args={[500, 500]} rotation={[Math.PI / 2, 0, 0]}>
+      <meshBasicMaterial color="blue" />
+    </Plane>
     <BreastingDolphin position={[45, height, 0]} />
     <MooringDolphin position={mda2Position} />
   </Canvas>

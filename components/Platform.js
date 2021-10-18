@@ -18,17 +18,17 @@ const Platform = (props) => {
   return (
     <group>
       <mesh
-        position={[0, dolphins.height, (dolphins.bollardHeight + width) / 2]}
+        position={[0, dolphins.height, width / 3]}
         ref={ref}
         {...props}
       >
         <boxGeometry args={[length, depth, width]} />
         <meshPhongMaterial color="orange" />
       </mesh>
-      <Foot position={[length / 4, 0, width / 4]} platformDepth={depth} />
-      <Foot position={[-length / 4, 0, width / 4]} platformDepth={depth} />
-      <Foot position={[length / 4, 0, width]} platformDepth={depth} />
-      <Foot position={[-length / 4, 0, width]} platformDepth={depth} />
+      <Foot position={[length / 4, 0, (width / 3) / 4]} platformDepth={depth} />
+      <Foot position={[-length / 4, 0, (width / 3) / 4]} platformDepth={depth} />
+      <Foot position={[length / 4, 0, (width / 2)]} platformDepth={depth} />
+      <Foot position={[-length / 4, 0, (width / 2)]} platformDepth={depth} />
     </group>
   );
 };

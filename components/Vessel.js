@@ -5,16 +5,22 @@ const Vessel = ({
   sternToCenter,
   vesselBreadth,
   vesselLength,
+  draught,
 }) => {
+  const depth = 20;
   const ref = useRef();
 
   return (
     <mesh
-      position={[(sternToCenter - bowToCenter) / 2, 0, -1 * (5 + (vesselBreadth / 2))]}
+      position={[
+        (sternToCenter - bowToCenter) / 2,
+        (depth / 2) - draught,
+        -1 * (5 + (vesselBreadth / 2)),
+      ]}
       ref={ref}
     >
-      <boxGeometry args={[vesselLength, 7, vesselBreadth]} />
-      <meshPhongMaterial color="blue" />
+      <boxGeometry args={[vesselLength, depth, vesselBreadth]} />
+      <meshBasicMaterial color="#0c3d70" />
     </mesh>
   );
 };

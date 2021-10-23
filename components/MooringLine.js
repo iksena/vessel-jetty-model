@@ -4,17 +4,17 @@ import * as THREE from 'three';
 import { dolphins } from '../utils';
 
 const MooringLine = ({
-  mooringFrom, mooringPoints, vesselBreadth, zOffset = 0, draught,
+  mooringFrom, mooringPoints, vesselBreadth, draught, zOffset = 0, offset = 0,
 }) => {
   const ref = useRef();
   const points = useMemo(() => [
     new THREE.Vector3(
-      mooringFrom,
+      mooringFrom + offset,
       10 - draught + dolphins.height,
       -(vesselBreadth / 2 + 5) + zOffset,
     ),
     new THREE.Vector3(...mooringPoints),
-  ], [mooringFrom, vesselBreadth, mooringPoints, zOffset, draught]);
+  ], [mooringFrom, vesselBreadth, mooringPoints, zOffset, draught, offset]);
   const onUpdate = useCallback((self) => self.setFromPoints(points), [points]);
 
   return (

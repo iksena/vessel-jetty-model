@@ -45,18 +45,19 @@ const ResultsTable = ({
   setAccepted,
   setErrors,
   validateField,
+  offset = 0
 }) => {
   const { mda1: { minHeadlineDegree }, mda2: { minSternlineDegree } } = jettyData;
   const {
     headLine,
     headLineAngleDeg,
     isValid: isHeadLineValid,
-  } = mda1ToBow(bowToCenter, vesselBreadth);
+  } = mda1ToBow(bowToCenter, vesselBreadth, offset);
   const {
     sternLine,
     sternLineAngleDeg,
     isValid: isSternLineValid,
-  } = mda2ToStern(sternToCenter, vesselBreadth);
+  } = mda2ToStern(sternToCenter, vesselBreadth, offset);
 
   useFieldsValidation({
     setAccepted,

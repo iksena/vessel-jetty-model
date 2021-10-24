@@ -12,6 +12,7 @@
     "@chakra-ui/react": "^1.6.9",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@react-pdf/renderer": "^2.0.20",
     "@react-three/drei": "^7.12.5",
     "@react-three/fiber": "^7.0.7",
     "fast-memoize": "^2.5.2",

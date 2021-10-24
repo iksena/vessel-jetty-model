@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import memoize from 'fast-memoize';
 
 import logo from '../public/pertamina-logo.png';
@@ -54,6 +55,7 @@ const FormAlert = ({ message, status = 'error' }) => (
 );
 
 const VesselForm = ({ onSubmit }) => {
+  const router = useRouter();
   const [isVesselAccepted, setAccepted] = useState();
 
   return (
@@ -77,6 +79,7 @@ const VesselForm = ({ onSubmit }) => {
                 onClick={() => {
                   validateForm();
                   onSubmit({ ...values, image: '', shouldSnapshot: true });
+                  router.push('/results');
                 }}
               >
                 Preview

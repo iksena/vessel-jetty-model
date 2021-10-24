@@ -60,9 +60,9 @@ const VesselForm = ({ onSubmit }) => {
     <Stack spacing={5} align="start">
       <Image src={logo} alt="logo" />
       <Heading size="lg">Vessel Data</Heading>
-      <Formik initialValues={{}} validate={memoize(validateVesselForm)} onSubmit={onSubmit}>
+      <Formik initialValues={{}} validate={memoize(validateVesselForm)}>
         {({
-          isValid, values, setErrors, validateField,
+          isValid, values, setErrors, validateField, validateForm,
         }) => (
           <Form>
             <Stack spacing={5} align="flex-end">
@@ -72,7 +72,15 @@ const VesselForm = ({ onSubmit }) => {
                 ))}
               </Grid>
               {!isValid && <FormAlert message="All fields are required!" />}
-              <Button colorScheme="teal" type="submit">Preview</Button>
+              <Button
+                colorScheme="teal"
+                onClick={() => {
+                  validateForm();
+                  onSubmit({ ...values, image: '', shouldSnapshot: true });
+                }}
+              >
+                Preview
+              </Button>
               <Heading size="md" alignSelf="flex-start">Results</Heading>
               <ResultsTable
                 {...values}

@@ -1,11 +1,5 @@
 import { useState } from 'react';
 import {
-  Input,
-  InputGroup,
-  InputRightAddon,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
   Button,
   Stack,
   Grid,
@@ -13,7 +7,7 @@ import {
   Alert,
   AlertIcon,
 } from '@chakra-ui/react';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import memoize from 'fast-memoize';
@@ -24,28 +18,7 @@ import {
   vesselFormFields,
 } from '../utils';
 import ResultsTable from './ResultsTable';
-
-const TextField = ({
-  name, placeholder, label, unit,
-}) => (
-  <Field name={name}>
-    {({ field, form }) => (
-      <FormControl isInvalid={form.errors?.[name] && form.touched?.[name]}>
-        <FormLabel htmlFor={name}>{label}</FormLabel>
-        <InputGroup size="sm">
-          <Input
-            {...field}
-            id={name}
-            placeholder={placeholder}
-            type="number"
-          />
-          <InputRightAddon>{unit}</InputRightAddon>
-        </InputGroup>
-        <FormErrorMessage>{form.errors?.[name]}</FormErrorMessage>
-      </FormControl>
-    )}
-  </Field>
-);
+import TextField from './TextField';
 
 const FormAlert = ({ message, status = 'error' }) => (
   <Alert status={status}>
@@ -64,7 +37,7 @@ const VesselForm = ({ onSubmit }) => {
       <Heading size="lg">Vessel Data</Heading>
       <Formik initialValues={{}} validate={memoize(validateVesselForm)}>
         {({
-          isValid, values, setErrors, validateField, validateForm,
+          isValid, values, setErrors, validateField, validateForm, errors,
         }) => (
           <Form>
             <Stack spacing={5} align="flex-end">
@@ -78,8 +51,9 @@ const VesselForm = ({ onSubmit }) => {
                 colorScheme="teal"
                 onClick={() => {
                   validateForm();
-                  onSubmit({ ...values, image: '', shouldSnapshot: true });
-                  router.push('/results');
+                  onSubmit({
+                    ...values, image: '', shouldSnapshot: true, errors,
+                  });
                 }}
               >
                 Preview
@@ -95,6 +69,12 @@ const VesselForm = ({ onSubmit }) => {
                 status={isVesselAccepted ? 'success' : 'error'}
                 message={`Vessel is${isVesselAccepted ? '' : ' not'} accepted!`}
               />
+              <Button
+                colorScheme="teal"
+                onClick={() => router.push('/results')}
+              >
+                Print Results
+              </Button>
             </Stack>
           </Form>
         )}

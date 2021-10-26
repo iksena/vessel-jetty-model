@@ -1,5 +1,5 @@
 import React from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import {
   OrbitControls, Plane, Box,
 } from '@react-three/drei';
@@ -67,6 +67,18 @@ const Catwalk = (props) => (
   </Box>
 );
 
+const CanvasState = ({ shouldSnapshot, setVesselData }) => {
+  useFrame(({ gl, scene, camera }) => {
+    if (shouldSnapshot) {
+      gl.render(scene, camera);
+      const image = gl.domElement.toDataURL();
+      setVesselData((data) => ({ ...data, image, shouldSnapshot: false }));
+    }
+  });
+
+  return null;
+};
+
 const Preview = (props) => (
   <Canvas
     camera={{
@@ -76,6 +88,7 @@ const Preview = (props) => (
       position: [0, 0, 100],
     }}
   >
+    <CanvasState {...props} />
     <OrbitControls enableZoom enablePan />
     <directionalLight color="yellow" position={[0, 50, 30]} />
     <MooringDolphin position={mda1Position} />

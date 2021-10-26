@@ -1,16 +1,18 @@
 import { Grid, GridItem } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect } from 'react';
 
-import Preview from '../components/Preview';
-import VesselForm from '../components/VesselForm';
+import { Preview, VesselForm } from '../components';
+import { useLocalStorage } from '../utils';
 
 const Home = () => {
-  const [vesselData, setVesselData] = useState();
+  const [vesselData, setVesselData] = useLocalStorage('vesselData', {});
+
+  useEffect(() => setVesselData({}), []);
 
   return (
-    <Grid h="100%" templateColumns="repeat(6, 1fr)" gap={1}>
-      <GridItem bg="white" margin={2} padding={5} colSpan={2}><VesselForm onSubmit={setVesselData} /></GridItem>
-      <GridItem bg="gray.50" margin={2} colStart={3} colSpan={4}><Preview {...vesselData} /></GridItem>
+    <Grid templateColumns="repeat(6, 1fr)" gap={1}>
+      <GridItem overflowY="scroll" maxH="100%" bg="white" margin={2} padding={5} colSpan={2}><VesselForm onSubmit={setVesselData} /></GridItem>
+      <GridItem bg="gray.50" margin={2} colStart={3} colSpan={4}><Preview {...vesselData} setVesselData={setVesselData} /></GridItem>
     </Grid>
   );
 };

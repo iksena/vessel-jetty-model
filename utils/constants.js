@@ -25,7 +25,7 @@ export const jettyData = {
       x: 136,
       y: 28.5,
     },
-    minHeadlineDegree: 26,
+    minHeadlineDegree: 15,
   },
   mda2: {
     toCenter: {
@@ -90,5 +90,12 @@ export const vesselFormFields = [
     label: 'PBL',
     placeholder: 'Parallel Body Length',
     unit: 'm',
+  },
+  {
+    name: 'offset',
+    label: 'Offset from Center Manfiold',
+    placeholder: 'Vessel Position from Center Manifold',
+    unit: 'm',
+    defaultValue: 0,
   },
 ];

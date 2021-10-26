@@ -13,8 +13,8 @@ export const round = (number, digits = 2) => {
   return Number.isNaN(rounded) || rounded === 'NaN' ? 0 : rounded;
 };
 
-export const mda1ToBow = (bowToCenter, vesselBreadth) => {
-  const Lx = mda1.toCenter.x - bowToCenter;
+export const mda1ToBow = (bowToCenter, vesselBreadth, offset = 0) => {
+  const Lx = mda1.toCenter.x - (bowToCenter + offset);
   const Ly = mda1.toCenter.y + (vesselBreadth * 0.5);
   const headLine = Math.sqrt(Lx ** 2 + Ly ** 2);
   const headLineAngle = Math.atan(Lx / Ly);
@@ -31,8 +31,8 @@ export const mda1ToBow = (bowToCenter, vesselBreadth) => {
   };
 };
 
-export const mda2ToStern = (sternToCenter, vesselBreadth) => {
-  const Lx = mda2.toCenter.x - sternToCenter;
+export const mda2ToStern = (sternToCenter, vesselBreadth, offset = 0) => {
+  const Lx = mda2.toCenter.x - (sternToCenter + offset);
   const Ly = mda2.toCenter.y + (vesselBreadth * 0.5);
   const sternLine = Math.sqrt(Lx ** 2 + Ly ** 2);
   const sternLineAngle = Math.atan(Lx / Ly);

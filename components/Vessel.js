@@ -6,22 +6,25 @@ const Vessel = ({
   vesselBreadth,
   vesselLength,
   draught,
+  offset = 0,
 }) => {
   const depth = 20;
   const ref = useRef();
 
   return (
-    <mesh
-      position={[
-        (sternToCenter - bowToCenter) / 2,
-        (depth / 2) - draught,
-        -1 * (5 + (vesselBreadth / 2)),
-      ]}
-      ref={ref}
-    >
-      <boxGeometry args={[vesselLength, depth, vesselBreadth]} />
-      <meshBasicMaterial color="#0c3d70" />
-    </mesh>
+    <group>
+      <mesh
+        position={[
+          (sternToCenter - bowToCenter) / 2 + offset,
+          (depth / 2) - draught,
+          -1 * (5 + (vesselBreadth / 2)),
+        ]}
+        ref={ref}
+      >
+        <boxGeometry args={[vesselLength, depth, vesselBreadth]} />
+        <meshBasicMaterial color="#0c3d70" />
+      </mesh>
+    </group>
   );
 };
 

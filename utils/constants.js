@@ -36,6 +36,12 @@ export const jettyData = {
   },
 };
 
+export const defaultVesselData = {
+  notes: {
+    suggestions: 'Kapal harus bersedia maintain kecepatan benturan dengan jetty / berthing speed maksimum 0.13 m/s\nBerthing angle 6 degrees ketika first touch\nSelama pandemi covid menghimbau agar crew tidak pesiar kecuali keadaan darurat',
+  },
+};
+
 export const vesselFormFields = [
   {
     name: 'vesselLength',

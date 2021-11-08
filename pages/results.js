@@ -9,14 +9,12 @@ import { Form, Formik } from 'formik';
 
 import PdfPreview from '../components/PdfPreview';
 import TextField from '../components/TextField';
-import { useLocalStorage } from '../utils';
-
-const initialSuggestions = 'Kapal harus bersedia maintain kecepatan benturan dengan jetty / berthing speed maksimum 0.13 m/s\nBerthing angle 6 degrees ketika first touch\nSelama pandemi covid menghimbau agar crew tidak pesiar kecuali keadaan darurat';
+import { useLocalStorage, defaultVesselData } from '../utils';
 
 const ResultsEditor = ({ setVesselData }) => (
   <Stack spacing={5} align="start">
     <Heading size="lg">Additional Notes</Heading>
-    <Formik initialValues={{ suggestions: initialSuggestions }}>
+    <Formik initialValues={{ suggestions: defaultVesselData.notes.suggestions }}>
       {({ values }) => (
         <Form style={{ width: '100%' }}>
           <Stack spacing={5}>
@@ -38,7 +36,7 @@ const ResultsEditor = ({ setVesselData }) => (
 );
 
 const ResultsPage = () => {
-  const [vesselData, setVesselData] = useLocalStorage('vesselData');
+  const [vesselData, setVesselData] = useLocalStorage('vesselData', defaultVesselData);
 
   return (
     <Grid templateColumns="repeat(3, 1fr)" gap={1}>

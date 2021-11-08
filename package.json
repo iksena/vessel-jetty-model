@@ -9,20 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.6.9",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
+    "@chakra-ui/react": "^1.6.12",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
     "@react-pdf/renderer": "^2.0.20",
     "@react-three/drei": "^7.12.5",
     "@react-three/fiber": "^7.0.7",
     "fast-memoize": "^2.5.2",
     "formik": "^2.2.9",
-    "framer-motion": "^4",
-    "next": "11.1.2",
-    "next-transpile-modules": "^8.0.0",
+    "framer-motion": "^5.2.1",
+    "next": "^12.0.3",
+    "next-transpile-modules": "^9.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "three": "^0.133.0"
+    "three": "^0.134.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

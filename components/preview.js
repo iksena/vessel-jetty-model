@@ -1,8 +1,6 @@
 import React from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import {
-  OrbitControls, Plane, Box,
-} from '@react-three/drei';
+import { OrbitControls, Plane, Box } from '@react-three/drei';
 
 import { dolphins } from '../utils';
 import Vessel from './Vessel';
@@ -94,11 +92,6 @@ const Preview = (props) => (
     <MooringDolphin position={mda1Position} />
     <BreastingDolphin position={[-45, height, 0]} />
     <Vessel {...props} />
-    {/* <Suspense fallback={null}>
-      <TransformControls mode="translate" showX showY showZ>
-        <Model />
-      </TransformControls>
-    </Suspense> */}
     <MooringLines {...props} />
     <Catwalk args={[90, 2, 2]} position={[0, height, 0]} />
     <Platform />

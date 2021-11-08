@@ -6,26 +6,49 @@ source: https://sketchfab.com/3d-models/oil-tanker-b4aa7dcf31ca476dbc1ebcab94ca8
 title: Oil Tanker
 */
 
-import React, { useCallback, useRef } from 'react';
+import React, {
+  useEffect,
+  useRef,
+} from 'react';
 import { useGLTF } from '@react-three/drei';
+import * as THREE from 'three';
 
-export default function Model({ ...props }) {
-  const group = useRef();
+export default function Model(props) {
   const { nodes, materials } = useGLTF('/ship.gltf');
+  const model = useRef();
+  const { size, position = [] } = props;
+  const [x = 0, y = 0, z = 0] = position;
+  const [xSize = 0, ySize = 0, zSize = 0] = size;
+  const { boundingBox } = nodes.mesh_0.geometry;
+  const modelLength = boundingBox.max?.x - boundingBox.min?.x;
+  const modelWidth = boundingBox.max?.y - boundingBox.min?.y;
+  const modelDepth = boundingBox.max?.z - boundingBox.min?.z;
 
-  const onUpdate = useCallback((self) => {
-    console.log(JSON.stringify(self, null, 4));
-  }, []);
+  useEffect(() => {
+    model.current.scale.copy(new THREE.Vector3(
+      ySize / modelLength,
+      xSize / modelWidth,
+      zSize / modelDepth,
+    ));
+  }, [model, modelLength, modelWidth, modelDepth, xSize, ySize, zSize]);
 
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, -Math.PI / 2]} position={[-80, 0, -160]}>
-        <mesh
-          geometry={nodes.mesh_0.geometry}
-          material={materials.initialShadingGroup}
-          onUpdate={onUpdate}
-        />
-      </group>
+    <group>
+      <mesh
+        ref={model}
+        rotation={[0, 0, Math.PI / 2]}
+        position={[x, y, z]}
+        dispose={null}
+        geometry={nodes.mesh_0.geometry}
+        material={materials.initialShadingGroup}
+      />
+      <mesh
+        rotation={[0, 0, Math.PI / 2]}
+        position={[x, y, z]}
+      >
+        <boxGeometry args={[ySize, xSize, zSize]} />
+        <lineBasicMaterial color="rgba(255,0,0, 0.8)" opacity={0.8} />
+      </mesh>
     </group>
   );
 }

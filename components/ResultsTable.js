@@ -31,7 +31,7 @@ const useFieldsValidation = ({
   useEffect(() => {
     setErrors({
       ...!isHeadLineValid && { bowToCenter: `Head line angle exceeds minimum of ${minHeadlineDegree}º` },
-      ...!isSternLineValid && { sternToCenter: `Stern line angle exceeds minimum of ${minSternlineDegree}º` }
+      ...!isSternLineValid && { sternToCenter: `Stern line angle exceeds minimum of ${minSternlineDegree}º` },
     });
     validateField('bowToCenter');
     validateField('sternToCenter');
@@ -45,7 +45,7 @@ const ResultsTable = ({
   setAccepted,
   setErrors,
   validateField,
-  offset = 0
+  offset = 0,
 }) => {
   const { mda1: { minHeadlineDegree }, mda2: { minSternlineDegree } } = jettyData;
   const {

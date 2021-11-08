@@ -90,8 +90,8 @@ const ResultsDocument = React.forwardRef(({
     <Page size="A4">
       <View style={styles.section}>
         <Text style={styles.header}>Suggestions</Text>
-        {errors && <Text>{Object.values(errors).reduce((text, error) => text.concat(error, '\n'), '')}</Text>}
         {notes?.suggestions && <Text style={styles.notes}>{notes?.suggestions}</Text>}
+        {errors && <Text>{Object.values(errors).reduce((text, error) => text.concat(error, '\n'), '')}</Text>}
       </View>
     </Page>
   </Document>

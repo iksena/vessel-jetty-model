@@ -11,10 +11,12 @@ import PdfPreview from '../components/PdfPreview';
 import TextField from '../components/TextField';
 import { useLocalStorage } from '../utils';
 
+const initialSuggestions = 'Kapal harus bersedia maintain kecepatan benturan dengan jetty / berthing speed maksimum 0.13 m/s\nBerthing angle 6 degrees ketika first touch\nSelama pandemi covid menghimbau agar crew tidak pesiar kecuali keadaan darurat';
+
 const ResultsEditor = ({ setVesselData }) => (
   <Stack spacing={5} align="start">
     <Heading size="lg">Additional Notes</Heading>
-    <Formik initialValues={{}}>
+    <Formik initialValues={{ suggestions: initialSuggestions }}>
       {({ values }) => (
         <Form style={{ width: '100%' }}>
           <Stack spacing={5}>

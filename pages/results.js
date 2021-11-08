@@ -9,12 +9,12 @@ import { Form, Formik } from 'formik';
 
 import PdfPreview from '../components/PdfPreview';
 import TextField from '../components/TextField';
-import { useLocalStorage } from '../utils';
+import { useLocalStorage, defaultVesselData } from '../utils';
 
 const ResultsEditor = ({ setVesselData }) => (
   <Stack spacing={5} align="start">
     <Heading size="lg">Additional Notes</Heading>
-    <Formik initialValues={{}}>
+    <Formik initialValues={{ suggestions: defaultVesselData.notes.suggestions }}>
       {({ values }) => (
         <Form style={{ width: '100%' }}>
           <Stack spacing={5}>
@@ -36,7 +36,7 @@ const ResultsEditor = ({ setVesselData }) => (
 );
 
 const ResultsPage = () => {
-  const [vesselData, setVesselData] = useLocalStorage('vesselData');
+  const [vesselData, setVesselData] = useLocalStorage('vesselData', defaultVesselData);
 
   return (
     <Grid templateColumns="repeat(3, 1fr)" gap={1}>

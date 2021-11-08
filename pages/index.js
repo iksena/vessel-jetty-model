@@ -2,12 +2,12 @@ import { Grid, GridItem } from '@chakra-ui/react';
 import { useEffect } from 'react';
 
 import { Preview, VesselForm } from '../components';
-import { useLocalStorage } from '../utils';
+import { useLocalStorage, defaultVesselData } from '../utils';
 
 const Home = () => {
-  const [vesselData, setVesselData] = useLocalStorage('vesselData', {});
+  const [vesselData, setVesselData] = useLocalStorage('vesselData', defaultVesselData);
 
-  useEffect(() => setVesselData({}), []);
+  useEffect(() => setVesselData(defaultVesselData), []);
 
   return (
     <Grid templateColumns="repeat(6, 1fr)" gap={1}>

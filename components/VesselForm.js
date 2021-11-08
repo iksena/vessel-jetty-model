@@ -16,6 +16,7 @@ import logo from '../public/pertamina-logo.png';
 import {
   validateVesselForm,
   vesselFormFields,
+  defaultVesselData
 } from '../utils';
 import ResultsTable from './ResultsTable';
 import TextField from './TextField';
@@ -35,7 +36,7 @@ const VesselForm = ({ onSubmit }) => {
     <Stack spacing={5} align="start">
       <Image src={logo} alt="logo" />
       <Heading size="lg">Vessel Data</Heading>
-      <Formik initialValues={{}} validate={memoize(validateVesselForm)}>
+      <Formik initialValues={defaultVesselData} validate={memoize(validateVesselForm)}>
         {({
           isValid, values, setErrors, validateField, validateForm, errors,
         }) => (

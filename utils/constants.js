@@ -57,13 +57,13 @@ export const vesselFormFields = [
   },
   {
     name: 'bowToCenter',
-    label: 'Bow To Center Manifold',
+    label: 'BCM(Port)/SCM(stbd)',
     placeholder: 'Length from Bow to Center Manifold',
     unit: 'm',
   },
   {
     name: 'sternToCenter',
-    label: 'Stern To Center Manifold',
+    label: 'SCM(Port)/BCM(stbd)',
     placeholder: 'Length from Stern to Center Manifold',
     unit: 'm',
   },

@@ -1,4 +1,3 @@
-// adjust your pages/_document.js
 import { ColorModeScript } from '@chakra-ui/react';
 import NextDocument, {
   Head, Html, Main, NextScript,
@@ -14,7 +13,6 @@ export default class Document extends NextDocument {
       <Html>
         <Head />
         <body>
-          {/* 👇 Here's the script */}
           <ColorModeScript initialColorMode="light" />
           <Main />
           <NextScript />

@@ -77,19 +77,19 @@ const ResultsTable = ({
       </Thead>
       <Tbody>
         <Tr>
-          <Td>Head Line</Td>
+          <Td>Left Side Jetty Line</Td>
           <Td isNumeric>{`${round(headLine)} m`}</Td>
         </Tr>
         <Tr>
-          <Td>{`Head Line Angle (min. ${minHeadlineDegree}º)`}</Td>
+          <Td>{`Left Side Jetty Line Angle (min. ${minHeadlineDegree}º)`}</Td>
           <Td isNumeric>{`${round(headLineAngleDeg)}º`}</Td>
         </Tr>
         <Tr>
-          <Td>Stern Line</Td>
+          <Td>Right Side Jetty Line</Td>
           <Td isNumeric>{`${round(sternLine)} m`}</Td>
         </Tr>
         <Tr>
-          <Td>{`Stern Line Angle (min. ${minSternlineDegree}º)`}</Td>
+          <Td>{`Right Side Jetty Line Angle (min. ${minSternlineDegree}º)`}</Td>
           <Td isNumeric>{`${round(sternLineAngleDeg)}º`}</Td>
         </Tr>
       </Tbody>

@@ -16,7 +16,7 @@ import logo from '../public/pertamina-logo.png';
 import {
   validateVesselForm,
   vesselFormFields,
-  defaultVesselData
+  defaultVesselData,
 } from '../utils';
 import ResultsTable from './ResultsTable';
 import TextField from './TextField';

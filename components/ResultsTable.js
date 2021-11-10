@@ -35,7 +35,8 @@ const useFieldsValidation = ({
     });
     validateField('bowToCenter');
     validateField('sternToCenter');
-  }, [isHeadLineValid, isSternLineValid, setErrors, minHeadlineDegree, minSternlineDegree]);
+  }, [isHeadLineValid, isSternLineValid, setErrors,
+    minHeadlineDegree, minSternlineDegree, validateField]);
 };
 
 const ResultsTable = ({

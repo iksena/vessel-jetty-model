@@ -1,7 +1,5 @@
 import { TransformControls } from '@react-three/drei';
-import {
-  Suspense, useEffect, useRef, useState,
-} from 'react';
+import { Suspense } from 'react';
 
 import Ship from './Ship';
 
@@ -13,7 +11,6 @@ const Vessel = ({
   draught,
   offset = 0,
 }) => {
-  const mesh = useRef();
   const depth = 20;
 
   return (
@@ -30,7 +27,7 @@ const Vessel = ({
           />
         </TransformControls>
       </Suspense>
-      <group>
+      {/* <group>
         <mesh
           position={[
             (sternToCenter - bowToCenter) / 2 + offset,
@@ -42,7 +39,7 @@ const Vessel = ({
           <boxGeometry args={[vesselLength, depth, vesselBreadth]} />
           <meshBasicMaterial color="#0c3d70" />
         </mesh>
-      </group>
+      </group> */}
     </>
   );
 };

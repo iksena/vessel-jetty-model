@@ -6,10 +6,7 @@ source: https://sketchfab.com/3d-models/oil-tanker-b4aa7dcf31ca476dbc1ebcab94ca8
 title: Oil Tanker
 */
 
-import React, {
-  useEffect,
-  useRef,
-} from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -26,9 +23,9 @@ export default function Model(props) {
 
   useEffect(() => {
     model.current.scale.copy(new THREE.Vector3(
-      ySize / modelLength,
+      zSize / modelLength,
       xSize / modelWidth,
-      zSize / modelDepth,
+      ySize / modelDepth,
     ));
   }, [model, modelLength, modelWidth, modelDepth, xSize, ySize, zSize]);
 
@@ -36,19 +33,19 @@ export default function Model(props) {
     <group>
       <mesh
         ref={model}
-        rotation={[0, 0, Math.PI / 2]}
-        position={[x, y, z]}
+        rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+        position={[x + 50, y, z + 35]}
         dispose={null}
         geometry={nodes.mesh_0.geometry}
         material={materials.initialShadingGroup}
       />
-      <mesh
-        rotation={[0, 0, Math.PI / 2]}
+      {/* <mesh
+        rotation={[-Math.PI / 2, 0, Math.PI / 2]}
         position={[x, y, z]}
       >
         <boxGeometry args={[ySize, xSize, zSize]} />
         <lineBasicMaterial color="rgba(255,0,0, 0.8)" opacity={0.8} />
-      </mesh>
+      </mesh> */}
     </group>
   );
 }

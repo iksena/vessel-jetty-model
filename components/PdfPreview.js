@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 const ResultsDocument = React.forwardRef(({
   vesselLength, image, vesselBreadth, bowToCenter, sternToCenter, draught, dwt,
   minSafeload, maxSafeload, pbl, offset, headLine, headLineAngleDeg, sternLine, sternLineAngleDeg,
-  notes, errors = {},
+  notes, errors = {}, sizeLiquid, sizeVapour, ansiLiquid, ansiVapour,
 }, ref) => (
   <Document ref={ref}>
     <Page size="A4">
@@ -67,22 +67,26 @@ const ResultsDocument = React.forwardRef(({
           <Text style={styles.header}>Vessel Data</Text>
           <Text>{`Length of Vessel: ${vesselLength} m`}</Text>
           <Text>{`Breadth of Vessel: ${vesselBreadth} m`}</Text>
-          <Text>{`Bow to Center Manifold: ${bowToCenter} m`}</Text>
-          <Text>{`Stern to Center Manifold: ${sternToCenter} m`}</Text>
+          <Text>{`BCM(Port)/SCM(stbd): ${bowToCenter} m`}</Text>
+          <Text>{`SCM(Port)/BCM(stbd): ${sternToCenter} m`}</Text>
           <Text>{`Draught of Vessel: ${draught} m`}</Text>
           <Text>{`Dead Weight Tonnage: ${dwt} T`}</Text>
           <Text>{`Minimum L-to-L Safeload: ${minSafeload} m`}</Text>
           <Text>{`Maximum L-to-L Safeload: ${maxSafeload} m`}</Text>
           <Text>{`Parallel Body Length: ${pbl} m`}</Text>
           <Text>{`Offset from Center Manifold: ${offset} m`}</Text>
+          <Text>{`Size of Liquid Manifold: ${sizeLiquid} in`}</Text>
+          <Text>{`ANSI of Liquid Manifold: ${ansiLiquid}`}</Text>
+          <Text>{`Size of Vapour Manifold: ${sizeVapour} in`}</Text>
+          <Text>{`ANSI of Vapour Manifold: ${ansiVapour}`}</Text>
         </View>
         <View style={styles.section}>
           <Text style={styles.header}>Results Data</Text>
-          <Text>{`Head Line: ${headLine} m`}</Text>
-          <Text>{`Head Line Angle: ${headLineAngleDeg}º`}</Text>
+          <Text>{`Left Side Jetty Line: ${headLine} m`}</Text>
+          <Text>{`Left Side Jetty Line Angle: ${headLineAngleDeg}º`}</Text>
           {notes?.headLineNotes && <Text style={styles.notes}>{notes?.headLineNotes}</Text>}
-          <Text>{`Stern Line: ${sternLine} m`}</Text>
-          <Text>{`Stern Line Angle: ${sternLineAngleDeg}º`}</Text>
+          <Text>{`Right Side Jetty Line: ${sternLine} m`}</Text>
+          <Text>{`Right Side Jetty Line Angle: ${sternLineAngleDeg}º`}</Text>
           {notes?.sternLineNotes && <Text style={styles.notes}>{notes?.sternLineNotes}</Text>}
         </View>
       </View>

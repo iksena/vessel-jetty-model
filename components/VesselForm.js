@@ -6,6 +6,7 @@ import {
   Heading,
   Alert,
   AlertIcon,
+  Tooltip,
 } from '@chakra-ui/react';
 import { Form, Formik } from 'formik';
 import Image from 'next/image';
@@ -48,17 +49,19 @@ const VesselForm = ({ onSubmit }) => {
                 ))}
               </Grid>
               {!isValid && <FormAlert message="All fields are required!" />}
-              <Button
-                colorScheme="teal"
-                onClick={() => {
-                  validateForm();
-                  onSubmit({
-                    ...values, image: '', shouldSnapshot: true, errors,
-                  });
-                }}
-              >
-                Preview
-              </Button>
+              <Tooltip hasArrow label="Click to save screenshot of ship and jetty 3D preview">
+                <Button
+                  colorScheme="teal"
+                  onClick={() => {
+                    validateForm();
+                    onSubmit({
+                      ...values, image: '', shouldSnapshot: true, errors,
+                    });
+                  }}
+                >
+                  Preview
+                </Button>
+              </Tooltip>
               <Heading size="md" alignSelf="flex-start">Results</Heading>
               <ResultsTable
                 {...values}

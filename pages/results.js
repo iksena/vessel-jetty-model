@@ -27,7 +27,7 @@ const ResultsEditor = ({ setVesselData }) => (
             <TextField name="sternLineNotes" label="Notes for Stern Line Angle" showUnit={false} type="textarea" />
             <TextField name="suggestions" label="Additional Suggestions" showUnit={false} type="textarea" />
             <HStack alignItems="flex-end" justifyContent="space-between">
-              <Button><Link href="/" replace>Back</Link></Button>
+              <Button><Link href="/" replace>Reset</Link></Button>
               <Button
                 colorScheme="teal"
                 type="submit"

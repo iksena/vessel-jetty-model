@@ -34,6 +34,13 @@ export const jettyData = {
     },
     minSternlineDegree: 15,
   },
+  ansi: {
+    max: 150,
+  },
+  manifoldSize: {
+    liquid: 10,
+    vapour: 6,
+  },
 };
 
 export const defaultVesselData = {
@@ -103,5 +110,29 @@ export const vesselFormFields = [
     placeholder: 'Vessel Position from Center Manifold',
     unit: 'm',
     defaultValue: 0,
+  },
+  {
+    name: 'sizeLiquid',
+    label: 'Size of Liquid Manifold',
+    placeholder: 'Liquid Manifold Size',
+    unit: 'in',
+  },
+  {
+    name: 'sizeVapour',
+    label: 'Size of Vapour Manifold',
+    placeholder: 'Vapour Manifold Size',
+    unit: 'in',
+  },
+  {
+    name: 'ansiLiquid',
+    label: 'ANSI of Liquid Manifold',
+    placeholder: 'Liquid Manifold ANSI',
+    showUnit: false,
+  },
+  {
+    name: 'ansiVapour',
+    label: 'ANSI of Vapour Manifold',
+    placeholder: 'Vapour Manifold ANSI',
+    showUnit: false,
   },
 ];

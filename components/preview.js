@@ -13,53 +13,49 @@ import Platform from './Platform';
 
 const { mda1Position, mda2Position, height } = dolphins;
 
-const MooringLines = (props) => (
-  <>
-    {!!props.bowToCenter && [
-      <MooringLine
-        {...props}
-        key={1}
-        mooringPoints={mda1Position}
-        mooringFrom={-props.bowToCenter}
-        zOffset={-1}
-      />,
-      <MooringLine
-        {...props}
-        key={2}
-        mooringPoints={mda1Position}
-        mooringFrom={-props.bowToCenter}
-      />,
-      <MooringLine
-        {...props}
-        key={3}
-        mooringPoints={mda1Position}
-        mooringFrom={-props.bowToCenter}
-        zOffset={1}
-      />]}
-    {!!props.sternToCenter && [
-      <MooringLine
-        {...props}
-        key={4}
-        mooringPoints={mda2Position}
-        mooringFrom={props.sternToCenter}
-        zOffset={-1}
-      />,
-      <MooringLine
-        {...props}
-        key={5}
-        mooringPoints={mda2Position}
-        mooringFrom={props.sternToCenter}
-      />,
-      <MooringLine
-        {...props}
-        key={6}
-        mooringPoints={mda2Position}
-        mooringFrom={props.sternToCenter}
-        zOffset={1}
-      />,
-    ]}
-  </>
-);
+const MooringLines = (props) => {
+  const lines = [];
+  if (props.bowToCenter) {
+    lines.push(
+      {
+        mooringPoints: mda1Position,
+        mooringFrom: -props.bowToCenter,
+        zOffset: -1,
+      },
+      {
+        mooringPoints: mda1Position,
+        mooringFrom: -props.bowToCenter,
+      },
+      {
+        mooringPoints: mda1Position,
+        mooringFrom: -props.bowToCenter,
+        zOffset: 1,
+      },
+    );
+  }
+  if (props.sternToCenter) {
+    lines.push(
+      {
+        mooringPoints: mda2Position,
+        mooringFrom: props.sternToCenter,
+        zOffset: -1,
+      },
+      {
+        mooringPoints: mda2Position,
+        mooringFrom: props.sternToCenter,
+      },
+      {
+        mooringPoints: mda2Position,
+        mooringFrom: props.sternToCenter,
+        zOffset: 1,
+      },
+    );
+  }
+
+  return lines.map((item, index) => (
+    <MooringLine key={index} {...props} {...item} />
+  ));
+};
 
 const Catwalk = (props) => (
   <Box {...props}>
